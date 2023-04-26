@@ -6,6 +6,6 @@ const authorSchema = new Schema({
 	nationality: String,
 });
 
-const Author = models.Author || model('author', authorSchema);
+const Author = models.Author || model('Author', authorSchema);
 
 export default Author;
