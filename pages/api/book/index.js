@@ -9,8 +9,8 @@ export default async function handler(req, res) {
 	switch (method) {
 		case 'GET':
 			try {
-				const books = await Book.find(
-					{}
+				const books = await Book.find().populate(
+					'authorId'
 				); /* find all the data in our database */
 				res.status(200).json({ success: true, data: books });
 			} catch (error) {
