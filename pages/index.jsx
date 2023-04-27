@@ -1,27 +1,35 @@
-import Head from 'next/head';
-import Image from 'next/image';
 import { Inter } from 'next/font/google';
+
+import BookList from './components/BookList';
+import Title from './components/Title';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
 	return (
-		<>
-			<Head>
-				<title>CRUD</title>
-				<meta
-					name='description'
-					content='Full stack CRUD application'
-				/>
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1'
-				/>
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-			<main className='flex justify-center items-center h-screen'>
-				<h1>Welcome to Next.js!</h1>
-			</main>
-		</>
+		<main className='flex flex-col items-center'>
+			<Title title='List of books' />
+			<BookList />
+			<Link
+				href='/book'
+				className='flex m-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded'>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					fill='none'
+					viewBox='0 0 24 24'
+					stroke-width='1.5'
+					stroke='currentColor'
+					className='w-6 h-6'>
+					<path
+						stroke-linecap='round'
+						stroke-linejoin='round'
+						d='M12 6v6m0 0v6m0-6h6m-6 0H6'
+					/>
+				</svg>
+
+				<span className='ml-2'>Add Book</span>
+			</Link>
+		</main>
 	);
 }

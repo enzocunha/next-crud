@@ -1,0 +1,55 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import Button from './Button';
+
+export default function BookList() {
+	const [books, setBooks] = useState([]);
+
+	useEffect(() => {
+		fetch('/api/book')
+			.then((response) => response.json())
+			.then((data) => setBooks(data.data))
+			.then((data) => console.log(data));
+	}, []);
+
+	if (books.length === 0) {
+		return <div>Books loading or no books registered yet.</div>;
+	}
+
+	return (
+		<table className='w-9/12 text-sm text-gray-500 dark:text-gray-400 text-center'>
+			<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+				<tr>
+					<th scope='col' className='px-6 py-3'>
+						Book Name
+					</th>
+					<th scope='col' className='px-6 py-3'>
+						Author
+					</th>
+					<th scope='col' className='px-6 py-3'>
+						Actions
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{books.map((book) => (
+					<tr
+						key={book.id}
+						class='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
+						<th
+							scope='row'
+							className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+							{book.name}
+						</th>
+						<td className='px-6 py-4'>{book.authorId.name}</td>
+						<td className='px-6 py-4'>
+							<Button type='edit' />
+							<Button type='delete' />
+						</td>
+					</tr>
+				))}
+			</tbody>
+		</table>
+	);
+}
