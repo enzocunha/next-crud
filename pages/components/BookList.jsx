@@ -9,8 +9,7 @@ export default function BookList() {
 	useEffect(() => {
 		fetch('/api/book')
 			.then((response) => response.json())
-			.then((data) => setBooks(data.data))
-			.then((data) => console.log(data));
+			.then((data) => setBooks(data.data));
 	}, []);
 
 	if (books.length === 0) {
@@ -40,9 +39,9 @@ export default function BookList() {
 						<th
 							scope='row'
 							className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-							{book.name}
+							{book.title}
 						</th>
-						<td className='px-6 py-4'>{book.authorId.name}</td>
+						<td className='px-6 py-4'>{book.author.name}</td>
 						<td className='px-6 py-4'>
 							<Button type='edit' />
 							<Button type='delete' />

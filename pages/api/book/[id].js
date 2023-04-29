@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 	switch (method) {
 		case 'GET' /* Get a model by its ID */:
 			try {
-				const book = await Book.findById(id).populate('authorId');
+				const book = await Book.findById(id).populate('author');
 				if (!book) {
 					return res.status(400).json({ success: false });
 				}
