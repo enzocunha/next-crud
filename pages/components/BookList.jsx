@@ -21,7 +21,10 @@ export default function BookList() {
 			<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
 				<tr>
 					<th scope='col' className='px-6 py-3'>
-						Book Name
+						Cover
+					</th>
+					<th scope='col' className='px-6 py-3'>
+						Title
 					</th>
 					<th scope='col' className='px-6 py-3'>
 						Author
@@ -36,11 +39,21 @@ export default function BookList() {
 					<tr
 						key={book.id}
 						class='bg-white border-b dark:bg-gray-800 dark:border-gray-700'>
-						<th
+						<td
+							scope='row'
+							className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+							{/* eslint-disable-next-line @next/next/no-img-element */}
+							<img
+								className='h-28'
+								src={book.cover}
+								alt='Book cover'
+							/>
+						</td>
+						<td
 							scope='row'
 							className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
 							{book.title}
-						</th>
+						</td>
 						<td className='px-6 py-4'>{book.author.name}</td>
 						<td className='px-6 py-4'>
 							<Button type='edit' />
