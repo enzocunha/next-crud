@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }) {
 	return (
 		<>
 			<Head>
-				<title>CRUD</title>
+				<title>Next 13 CRUD Application</title>
 				<meta
 					name='description'
 					content='Full stack CRUD application'
