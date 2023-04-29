@@ -1,7 +1,7 @@
 function Button({ type }) {
 	if (type === 'edit') {
 		return (
-			<button class='m-1 w-18 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center'>
+			<button className='m-1 w-18 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					fill='none'
@@ -19,7 +19,7 @@ function Button({ type }) {
 		);
 	} else if (type === 'delete') {
 		return (
-			<button class='m-1 w-18 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded inline-flex items-center'>
+			<button className='m-1 w-18 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded inline-flex items-center'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
 					fill='none'
