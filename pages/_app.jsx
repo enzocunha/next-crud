@@ -3,6 +3,9 @@ import Head from 'next/head';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import ThemeProvider from './components/ThemeProvider';
+import Themebutton from './components/ThemeButton';
+
 export default function App({ Component, pageProps }) {
 	return (
 		<>
@@ -19,20 +22,12 @@ export default function App({ Component, pageProps }) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 
-			<Component {...pageProps} />
-			{/* ToastContainer is a component from react-toastify to show notifications on the screen */}
-			<ToastContainer
-				position='top-center'
-				autoClose={5000}
-				hideProgressBar={false}
-				newestOnTop={false}
-				closeOnClick
-				rtl={false}
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-				theme='light'
-			/>
+			<ThemeProvider>
+				<Component {...pageProps} />
+				{/* ToastContainer is a component from react-toastify to show notifications on the screen */}
+				<ToastContainer />
+				<Themebutton />
+			</ThemeProvider>
 		</>
 	);
 }
