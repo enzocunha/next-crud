@@ -1,34 +1,60 @@
+'use client';
+
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import Link from 'next/link';
 import Title from './Title';
 
 export default function Form() {
+	// Input fields
+	const [bookData, setBookData] = useState({
+		title: '',
+		description: '',
+		cover: '',
+		author: {
+			name: '',
+			nationality: '',
+		},
+	});
+
+	// Used to edit a book
+	const searchParams = useSearchParams();
+	const editId = searchParams.get('id');
+
+	useEffect(() => {
+		if (editId) {
+			fetch(`/api/book/${editId}`)
+				.then((response) => response.json())
+				.then((data) => setBookData(data.data));
+		}
+	}, [editId]);
+
 	// Used after form is submitted
 	const router = useRouter();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		// Get the form data
-		const data = {
-			title: event.target.title.value,
-			description: event.target.description.value,
-			cover: event.target.image.value,
-			author: {
-				name: event.target.authorName.value,
-				nationality: event.target.authorNationality.value,
-			},
-		};
-
-		// Send the data to the API
-		const response = await fetch('/api/book', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		});
+		// If editId is set, update the book otherwise create a new one
+		if (editId) {
+			await fetch(`/api/book/${editId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(bookData),
+			});
+		} else {
+			const response = await fetch('/api/book', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(bookData),
+			});
+		}
 
 		router.push('/');
 	};
@@ -50,10 +76,17 @@ export default function Form() {
 						</label>
 						<div className='mt-2.5'>
 							<input
+								onChange={(event) =>
+									setBookData({
+										...bookData,
+										title: event.target.value,
+									})
+								}
 								type='text'
 								name='title'
 								id='title'
 								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+								value={bookData.title || ''}
 								required
 							/>
 						</div>
@@ -68,11 +101,17 @@ export default function Form() {
 						</label>
 						<div className='mt-2.5'>
 							<textarea
+								onChange={(event) =>
+									setBookData({
+										...bookData,
+										description: event.target.value,
+									})
+								}
 								name='description'
 								id='description'
 								rows={4}
 								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-								defaultValue={''}
+								value={bookData.description || ''}
 								required
 							/>
 						</div>
@@ -87,10 +126,17 @@ export default function Form() {
 						</label>
 						<div className='mt-2.5'>
 							<input
+								onChange={(event) =>
+									setBookData({
+										...bookData,
+										cover: event.target.value,
+									})
+								}
 								type='text'
 								name='image'
 								id='image'
 								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+								value={bookData.cover || ''}
 							/>
 						</div>
 					</div>
@@ -104,10 +150,20 @@ export default function Form() {
 						</label>
 						<div className='mt-2.5'>
 							<input
+								onChange={(event) => {
+									setBookData({
+										...bookData,
+										author: {
+											...bookData.author,
+											name: event.target.value,
+										},
+									});
+								}}
 								type='text'
 								name='authorName'
 								id='authorName'
 								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+								value={bookData.author.name}
 								required
 							/>
 						</div>
@@ -122,9 +178,22 @@ export default function Form() {
 						</label>
 						<div className='relative mt-2.5'>
 							<select
+								onChange={(event) => {
+									setBookData({
+										...bookData,
+										author: {
+											...bookData.author,
+											nationality: event.target.value,
+										},
+									});
+								}}
 								id='authorNationality'
 								name='authorNationality'
 								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'>
+								<option value={bookData.author.nationality}>
+									{bookData.author.nationality ||
+										'Select a nationality'}
+								</option>
 								<option value=''>-- select one --</option>
 								<option value='afghan'>Afghan</option>
 								<option value='albanian'>Albanian</option>
@@ -373,7 +442,7 @@ export default function Form() {
 					<button
 						type='submit'
 						className='mt-10 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
-						Create book
+						{editId ? 'Update book' : 'Create book'}
 					</button>
 				</div>
 			</form>

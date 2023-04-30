@@ -1,12 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
 
+	// Used on edit button
+	const router = useRouter();
+
 	const handleEdit = (id) => {
-		console.log(`Edit book ${id}`);
+		router.push(`/book?id=${id}`);
 	};
 
 	const handleDelete = (id) => {
