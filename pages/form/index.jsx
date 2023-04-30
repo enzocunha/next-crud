@@ -83,7 +83,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='title'
-							className='block text-sm font-semibold leading-6 text-gray-900'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
 							Book title
 						</label>
 						<div className='mt-2.5'>
@@ -108,7 +108,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='description'
-							className='block text-sm font-semibold leading-6 text-gray-900'>
+							className='block text-sm font-semibold leading-6 text-gray-900  dark:text-white'>
 							Book description
 						</label>
 						<div className='mt-2.5'>
@@ -133,7 +133,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='image'
-							className='block text-sm font-semibold leading-6 text-gray-900'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
 							Book image source
 						</label>
 						<div className='mt-2.5'>
@@ -157,7 +157,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='authorName'
-							className='block text-sm font-semibold leading-6 text-gray-900'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
 							Author name
 						</label>
 						<div className='mt-2.5'>
@@ -185,7 +185,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='authorNationality'
-							className='block text-sm font-semibold leading-6 text-gray-900'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
 							Author nationality
 						</label>
 						<div className='relative mt-2.5'>
@@ -446,14 +446,14 @@ export default function Form() {
 					{/* Go back button */}
 					<Link
 						href='/'
-						className='mt-10 rounded-md bg-green-500 hover:bg-green-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+						className='mt-5 rounded-md bg-green-500 hover:bg-green-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
 						Cancel
 					</Link>
 
 					{/* Submit button */}
 					<button
 						type='submit'
-						className='mt-10 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+						className='mt-5 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
 						{editId ? 'Update book' : 'Create book'}
 					</button>
 				</div>
