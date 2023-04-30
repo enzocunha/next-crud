@@ -11,7 +11,7 @@ export default function BookList() {
 	const router = useRouter();
 
 	const handleEdit = (id) => {
-		router.push(`/book?id=${id}`);
+		router.push(`/form?id=${id}`);
 	};
 
 	const handleDelete = (id) => {

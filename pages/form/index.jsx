@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import Link from 'next/link';
-import Title from './Title';
+import Title from '../components/Title';
 
 export default function Form() {
 	// Input fields

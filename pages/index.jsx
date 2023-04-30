@@ -12,7 +12,7 @@ export default function Home() {
 			<Title title='List of books' />
 			<BookList />
 			<Link
-				href='/book'
+				href='/form'
 				className='flex m-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded'>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
