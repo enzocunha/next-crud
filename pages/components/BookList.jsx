@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
@@ -23,6 +24,17 @@ export default function BookList() {
 
 		// Delete the book from the state
 		setBooks(books.filter((book) => book._id !== id));
+
+		toast.success('Book deleted successfully', {
+			position: 'top-center',
+			autoClose: 2000,
+			hideProgressBar: true,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'light',
+		});
 	};
 
 	useEffect(() => {

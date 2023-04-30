@@ -3,6 +3,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 import Link from 'next/link';
 import Title from './Title';
@@ -39,7 +40,7 @@ export default function Form() {
 
 		// If editId is set, update the book otherwise create a new one
 		if (editId) {
-			await fetch(`/api/book/${editId}`, {
+			const response = await fetch(`/api/book/${editId}`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
@@ -57,6 +58,17 @@ export default function Form() {
 		}
 
 		router.push('/');
+
+		toast.success('Updated succesfully.', {
+			position: 'top-center',
+			autoClose: 2000,
+			hideProgressBar: true,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+			theme: 'light',
+		});
 	};
 
 	return (

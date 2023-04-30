@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google';
-
-import BookList from './components/BookList';
-import Title from './components/Title';
 import Link from 'next/link';
+
+import Title from './components/Title';
+import BookList from './components/BookList';
 
 const inter = Inter({ subsets: ['latin'] });
 
