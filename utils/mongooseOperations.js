@@ -1,5 +1,3 @@
-import mongoose from 'mongoose';
-
 import Author from '@/models/authorModel';
 import Book from '@/models/bookModel';
 

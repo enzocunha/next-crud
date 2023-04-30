@@ -1,10 +1,25 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Button from './Button';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
+
+	const handleEdit = (id) => {
+		console.log(`Edit book ${id}`);
+	};
+
+	const handleDelete = (id) => {
+		console.log(`Delete book ${id}`);
+
+		// Delete the book from the database
+		fetch(`/api/book/${id}`, {
+			method: 'DELETE',
+		});
+
+		// Delete the book from the state
+		setBooks(books.filter((book) => book._id !== id));
+	};
 
 	useEffect(() => {
 		fetch('/api/book')
@@ -60,7 +75,9 @@ export default function BookList() {
 						</td>
 						<td className='px-6 py-4'>{book.author.name}</td>
 						<td className='px-6 py-4'>
+							{/* Edit button */}
 							<button
+								onClick={() => handleEdit(book._id)}
 								className={`flex gap-1 w-24 m-1 w-18 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded items-center`}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -77,7 +94,10 @@ export default function BookList() {
 								</svg>
 								Edit
 							</button>
+
+							{/* Delete button */}
 							<button
+								onClick={() => handleDelete(book._id)}
 								className={`flex gap-1 w-24 m-1 w-18 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded items-center`}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
