@@ -1,5 +1,5 @@
 import dbConnect from '@/lib/dbConnect';
-import { getBooksPaginated } from '@/utils/mongooseOperations';
+import { getBooksPaginated, getTotalBooks } from '@/utils/mongooseOperations';
 
 export default async function handler(req, res) {
 	const {
@@ -10,7 +10,12 @@ export default async function handler(req, res) {
 
 	try {
 		const books = await getBooksPaginated(page);
-		res.status(200).json({ success: true, data: books });
+		const numberOfBooks = await getTotalBooks();
+		res.status(200).json({
+			success: true,
+			data: books,
+			total: numberOfBooks,
+		});
 	} catch (error) {
 		res.status(400).json({ success: false });
 	}

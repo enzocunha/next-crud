@@ -41,11 +41,16 @@ export async function getBooks() {
 	return books;
 }
 
-export async function getBooksPaginated(page, limit=5) {
+export async function getBooksPaginated(page, limit = 5) {
 	const books = await Book.find()
 		.populate('author')
 		.skip(page * limit)
 		.limit(limit);
 
 	return books;
+}
+
+export async function getTotalBooks() {
+	const total = await Book.countDocuments();
+	return total;
 }

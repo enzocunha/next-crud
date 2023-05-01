@@ -1,16 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
-import { useSearchParams } from 'next/navigation';
 
-export default function BookList() {
-	const [books, setBooks] = useState([]);
-
+export default function BookList({ router, books, setBooks }) {
 	// Buttons to edit and delete a book
-	const router = useRouter();
-
 	const handleEdit = (id) => {
 		router.push(`/form?id=${id}`);
 	};
@@ -38,19 +31,13 @@ export default function BookList() {
 		});
 	};
 
-	// Load the books from the database with pagination
-	const searchParams = useSearchParams();
-	const page = searchParams.get('page') || 0;
+	// Returns
+	if (!books) {
+		return <div>Loading.</div>;
+	}
 
-	useEffect(() => {
-		fetch(`api/book/page/${page}`)
-			.then((response) => response.json())
-			.then((data) => setBooks(data.data));
-	}, [page]);
-
-	
 	if (books.length === 0) {
-		return <div>Books loading or no books registered yet.</div>;
+		return <div>No books registered yet.</div>;
 	}
 
 	return (
