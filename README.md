@@ -2,6 +2,13 @@
 
 This application is a simple CRUD application that allows you to create, read, update and delete books and authors from a database.
 
+## Technologies used
+
+-   Next.js
+-   MongoDB
+-   Mongoose
+-   Tailwind CSS
+
 ## Installation
 
 1. Run `npm install` to install the dependencies
