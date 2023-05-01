@@ -17,7 +17,7 @@ function Themebutton() {
 	const currentTheme = theme === 'system' ? systemTheme : theme;
 
 	return (
-		<div >
+		<div className='fixed bottom-10 right-10'>
 			{currentTheme === 'dark' ? (
 				<SunIcon setTheme={setTheme} />
 			) : (
