@@ -35,3 +35,17 @@ export async function createBook({ title, description, cover, author }) {
 
 	return book.save();
 }
+
+export async function getBooks() {
+	const books = await Book.find().populate('author');
+	return books;
+}
+
+export async function getBooksPaginated(page, limit=5) {
+	const books = await Book.find()
+		.populate('author')
+		.skip(page * limit)
+		.limit(limit);
+
+	return books;
+}
