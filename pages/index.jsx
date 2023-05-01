@@ -9,12 +9,14 @@ import { useEffect, useState } from 'react';
 import Title from './components/Title';
 import BookList from './components/BookList';
 import NavPages from './components/NavPages';
+import SearchBar from './components/SearchBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
 	const [books, setBooks] = useState([]);
-	const [totalBooks, setTotalBooks] = useState(0);
+	const [countBooks, setCountBooks] = useState(0);
+	const [filter, setFilter] = useState('');
 
 	// Used by BookList and NavPages
 	const router = useRouter();
@@ -24,20 +26,21 @@ export default function Home() {
 	const page = searchParams.get('page') || 0;
 
 	useEffect(() => {
-		fetch(`api/book/page/${page}`)
+		fetch(`api/book/page/${page}${filter ? `?filter=${filter}` : ''}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setBooks(data.data);
-				setTotalBooks(data.total);
+				setCountBooks(data.count);
 			});
-	}, [page]);
+	}, [page, filter]);
 
 	return (
 		<main className='flex flex-col items-center'>
 			<Title title='List of books' />
+			<SearchBar setFilter={setFilter} />
 			<BookList books={books} setBooks={setBooks} router={router} />
 			<NavPages
-				totalBooks={totalBooks}
+				countBooks={countBooks}
 				currentPage={page}
 				router={router}
 			/>

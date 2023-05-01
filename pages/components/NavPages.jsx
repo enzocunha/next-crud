@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
-function NavPages({ totalBooks, currentPage }) {
-	const numberPages = Math.ceil(totalBooks / 5);
+function NavPages({ countBooks, currentPage }) {
+	const numberPages = Math.ceil(countBooks / 5);
 	const pages = Array.from({ length: numberPages }, (_, i) => i + 1);
 	const lastPage = numberPages - 1;
 

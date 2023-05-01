@@ -41,13 +41,34 @@ export async function getBooks() {
 	return books;
 }
 
-export async function getBooksPaginated(page, limit = 5) {
-	const books = await Book.find()
+export async function getBooksFilteredAndPaginated(query, limit = 5) {
+	let filter = {};
+
+	// Check if filter is present
+	if (query.filter) {
+		const regex = { $regex: query.filter, $options: 'i' };
+
+		// Filter by title or author name
+		filter = {
+			$or: [
+				{ title: regex },
+				{
+					author: {
+						$in: await Author.find({ name: regex }).distinct('_id'),
+					},
+				},
+			],
+		};
+	}
+
+	const count = await Book.countDocuments(filter);
+
+	const books = await Book.find(filter)
 		.populate('author')
-		.skip(page * limit)
+		.skip(query.page * limit)
 		.limit(limit);
 
-	return books;
+	return { books, count };
 }
 
 export async function getTotalBooks() {
