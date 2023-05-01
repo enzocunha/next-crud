@@ -77,13 +77,13 @@ export default function Form() {
 			<form
 				onSubmit={handleSubmit}
 				method='POST'
-				className='mx-auto max-w-xl '>
+				className='mx-auto max-w-xl'>
 				<div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
 					{/* Book title */}
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='title'
-							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400'>
 							Book title
 						</label>
 						<div className='mt-2.5'>
@@ -108,7 +108,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='description'
-							className='block text-sm font-semibold leading-6 text-gray-900  dark:text-white'>
+							className='block text-sm font-semibold leading-6 text-gray-900  dark:text-gray-400'>
 							Book description
 						</label>
 						<div className='mt-2.5'>
@@ -122,7 +122,7 @@ export default function Form() {
 								name='description'
 								id='description'
 								rows={4}
-								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+								className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 '
 								value={bookData.description || ''}
 								required
 							/>
@@ -133,7 +133,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='image'
-							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400'>
 							Book image source
 						</label>
 						<div className='mt-2.5'>
@@ -157,7 +157,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='authorName'
-							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400'>
 							Author name
 						</label>
 						<div className='mt-2.5'>
@@ -185,7 +185,7 @@ export default function Form() {
 					<div className='sm:col-span-2'>
 						<label
 							htmlFor='authorNationality'
-							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-white'>
+							className='block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-400'>
 							Author nationality
 						</label>
 						<div className='relative mt-2.5'>
