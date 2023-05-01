@@ -2,6 +2,8 @@
 
 This application is a simple CRUD application that allows you to create, read, update and delete books and authors from a database.
 
+Also includes dark mode and a search function that allows you to search for books or authors.
+
 ## Technologies used
 
 -   Next.js
