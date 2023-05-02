@@ -1,6 +1,7 @@
-function SearchBar({ setFilter }) {
+function SearchBar({ setFilter, router }) {
 	const onChange = (e) => {
 		setFilter(e.target.value);
+		router.push('/?page=0');
 	};
 
 	return (

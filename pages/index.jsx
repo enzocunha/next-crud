@@ -37,7 +37,7 @@ export default function Home() {
 	return (
 		<main className='flex flex-col items-center'>
 			<Title title='List of books' />
-			<SearchBar setFilter={setFilter} />
+			<SearchBar setFilter={setFilter} router={router} />
 			<BookList books={books} setBooks={setBooks} router={router} />
 			<NavPages
 				countBooks={countBooks}
